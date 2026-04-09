@@ -1,59 +1,97 @@
-# Sistema de Plantão Corporativo
+# Sistema de Plantao Corporativo
 
-Aplicação desktop Windows em Python para gerar, editar, salvar e exportar planilhas de plantão com interface gráfica em `CustomTkinter`.
+Aplicacao desktop Windows para gerar, editar, salvar e exportar planilhas de plantao com interface grafica em Python.
+
+O sistema foi pensado para equipes que precisam controlar sobreaviso e suporte fora do horario comercial sem depender de preenchimento manual em Excel.
+
+## Visao geral
+
+Com a aplicacao, o fluxo fica assim:
+
+1. selecionar mes e ano
+2. cadastrar os responsaveis
+3. atribuir responsavel por semana
+4. gerar os lancamentos automaticos de sobreaviso
+5. registrar suportes urgentes manualmente
+6. revisar a grade
+7. salvar o projeto em JSON
+8. exportar o Excel final
+
+## Funcionalidades
+
+- interface desktop com `CustomTkinter`
+- calendario mensal
+- atribuicao de responsavel por semana
+- geracao automatica de plantao semanal
+- geracao do mes inteiro com um clique
+- cadastro, edicao e remocao de responsaveis
+- cadastro manual de ocorrencias de suporte
+- calculo automatico de horas e valor
+- tratamento de virada de dia
+- filtros e ordenacao na grade de lancamentos
+- persistencia em JSON
+- exportacao para Excel `.xlsx`
+- abas extras de resumo no Excel
+- empacotamento para `.exe` com `PyInstaller`
+
+## Regras de negocio
+
+Horario base considerado:
+
+- expediente normal: `08:00` as `18:00`
+- descanso: `18:00` as `20:00`
+- plantao fora do horario comercial: `20:00` as `06:00` do dia seguinte
+- descanso: `06:00` as `08:00`
+
+Tipos de lancamento:
+
+- `Sobre aviso`: prontidao sem atendimento efetivo
+- `Suporte`: atendimento urgente realizado
+
+Calculo de valor:
+
+- `Sobre aviso`: `horas * 3.51`
+- `Suporte`: `horas * 10.5`
+
+Configuracoes padrao podem ser alteradas em [`config.json`](./config.json).
+
+## Stack
+
+- Python 3
+- CustomTkinter
+- tkcalendar
+- openpyxl
+- JSON
+- PyInstaller
 
 ## Estrutura do projeto
 
 ```text
 planilha_plantao/
-├── app/
-│   ├── assets/
-│   │   └── README.md
-│   ├── config/
-│   │   ├── __init__.py
-│   │   └── paths.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── configuracao_sistema.py
-│   │   ├── lancamento_plantao.py
-│   │   ├── projeto_plantao.py
-│   │   └── responsavel.py
-│   ├── services/
-│   │   ├── __init__.py
-│   │   ├── config_service.py
-│   │   ├── excel_export_service.py
-│   │   ├── project_service.py
-│   │   └── schedule_service.py
-│   ├── ui/
-│   │   ├── __init__.py
-│   │   ├── dialogs.py
-│   │   ├── main_window.py
-│   │   └── styles.py
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── datetime_utils.py
-│   │   ├── formatters.py
-│   │   └── validators.py
-│   └── __init__.py
-├── data/
-│   ├── README.md
-│   └── sample_project.json
-├── exports/
-│   └── README.md
-├── config.json
-├── main.py
-├── PlanilhaPlantao.spec
-├── README.md
-└── requirements.txt
+|-- app/
+|   |-- assets/
+|   |-- config/
+|   |-- models/
+|   |-- services/
+|   |-- ui/
+|   |-- utils/
+|   `-- __init__.py
+|-- data/
+|-- exports/
+|-- config.json
+|-- main.py
+|-- PlanilhaPlantao.spec
+|-- README.md
+`-- requirements.txt
 ```
 
 ## Requisitos
 
-1. Windows 10 ou superior.
-2. Python 3.11 ou 3.12 instalado a partir de [python.org](https://www.python.org/downloads/windows/).
-3. Durante a instalação do Python, marque a opção `Add Python to PATH`.
+- Windows 10 ou superior
+- Python 3.11 ou 3.12 instalado
+- opcao `Add Python to PATH` habilitada na instalacao
 
-## Instalação das dependências
+## Instalacao
 
 No PowerShell, dentro da pasta do projeto:
 
@@ -64,7 +102,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Se a sua máquina usar o launcher do Python:
+Se sua maquina usar `py` em vez de `python`:
 
 ```powershell
 py -3 -m venv .venv
@@ -73,7 +111,7 @@ py -3 -m pip install --upgrade pip
 py -3 -m pip install -r requirements.txt
 ```
 
-## Como rodar localmente
+## Executando localmente
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
@@ -87,7 +125,71 @@ Ou:
 py -3 main.py
 ```
 
-## Como gerar o executável `.exe`
+## Executando no VSCode
+
+- selecione o interpretador Python do projeto
+- ative o ambiente virtual
+- rode `main.py` pelo terminal ou com `F5`
+
+O repositorio ja inclui uma configuracao basica em [`.vscode/launch.json`](./.vscode/launch.json).
+
+## Como usar
+
+### 1. Configurar o periodo
+
+- escolha o mes
+- escolha o ano
+- use o calendario para localizar a semana
+
+### 2. Definir responsaveis
+
+- adicione os nomes na area de cadastro
+- selecione a semana
+- atribua o responsavel da semana
+
+### 3. Gerar o plantao
+
+- `Gerar semana`: cria os lancamentos automaticos da semana selecionada
+- `Gerar mes`: gera todas as semanas do mes com base nas atribuicoes
+
+### 4. Registrar suporte manual
+
+No modal `Adicionar Suporte`, informe:
+
+- responsavel
+- data
+- hora inicio
+- hora fim ou quantidade de horas
+- numero do chamado
+- solicitante
+- cliente
+- nivel
+- observacao
+
+### 5. Revisar e exportar
+
+- filtre a grade por responsavel, mes, tipo e cliente
+- edite, duplique ou exclua linhas
+- salve o projeto em JSON
+- exporte para Excel
+
+## Exportacao Excel
+
+O arquivo exportado contem:
+
+- aba `Lancamentos`
+- aba `Resumo Responsavel`
+- aba `Resumo Mes Tipo`
+
+Recursos aplicados no `.xlsx`:
+
+- cabecalho estilizado
+- filtros na linha de cabecalho
+- congelamento da primeira linha
+- formatacao de moeda
+- ajuste de largura de colunas
+
+## Gerando o executavel `.exe`
 
 Com o ambiente virtual ativado:
 
@@ -95,45 +197,38 @@ Com o ambiente virtual ativado:
 pyinstaller --noconfirm --clean PlanilhaPlantao.spec
 ```
 
-O executável será criado em:
+Saida esperada:
 
 ```text
 dist\PlanilhaPlantao.exe
 ```
 
-## Observações de empacotamento no Windows
+## Observacoes de empacotamento
 
-1. O `PlanilhaPlantao.spec` já embute `config.json` e `data/sample_project.json`.
-2. Na primeira execução do `.exe`, o sistema cria automaticamente as pastas `data` e `exports` ao lado do executável.
-3. Se `config.json` não existir ao lado do `.exe`, ele será copiado automaticamente.
-4. Se o Excel estiver com o arquivo aberto no momento da exportação, o sistema mostra uma mensagem amigável e a exportação é interrompida com segurança.
-5. Para distribuição interna, envie a pasta `dist` gerada pelo PyInstaller.
+- o arquivo [`PlanilhaPlantao.spec`](./PlanilhaPlantao.spec) ja inclui `config.json` e `data/sample_project.json`
+- na primeira execucao do `.exe`, as pastas `data` e `exports` sao criadas automaticamente
+- se o Excel estiver aberto com o arquivo de destino, a exportacao falha com mensagem amigavel
 
-## Como usar no dia a dia
+## Arquivos importantes
 
-1. Abra o sistema.
-2. Escolha o mês e o ano.
-3. Cadastre ou revise os responsáveis.
-4. Selecione uma semana no calendário ou na grade de semanas.
-5. Escolha o responsável da semana e clique em `Atribuir responsável`.
-6. Clique em `Gerar plantão automático` para criar os lançamentos padrão de sobreaviso.
-7. Use `Adicionar suporte` para registrar ocorrências urgentes reais.
-8. Revise a grade, edite, duplique ou exclua linhas quando necessário.
-9. Clique em `Salvar projeto` para persistir o trabalho em JSON.
-10. Clique em `Exportar Excel` para gerar a planilha final em `.xlsx`.
+- [`main.py`](./main.py): ponto de entrada
+- [`app/ui/main_window.py`](./app/ui/main_window.py): janela principal
+- [`app/ui/dialogs.py`](./app/ui/dialogs.py): modais de cadastro e edicao
+- [`app/services/schedule_service.py`](./app/services/schedule_service.py): regras de geracao e calculo
+- [`app/services/excel_export_service.py`](./app/services/excel_export_service.py): exportacao para Excel
+- [`config.json`](./config.json): parametros do sistema
+- [`data/sample_project.json`](./data/sample_project.json): projeto de exemplo
 
-## Regras padrão do sistema
+## Estado atual
 
-- Segunda a sexta: `20:00` até `06:00` do dia seguinte, tipo `Sobre aviso`.
-- Sábado: regra configurável em `config.json`. O padrão entregue é cobertura de `24h`.
-- Domingo: regra configurável em `config.json`. O padrão entregue é cobertura de `24h`.
-- `Sobre aviso`: `horas * 3.51`
-- `Suporte`: `horas * 10.5`
+O projeto entrega:
 
-## Arquivos importantes para manutenção
+- cadastro de responsaveis
+- geracao semanal e mensal
+- lancamentos manuais de suporte
+- persistencia em JSON
+- exportacao consolidada em Excel
 
-- `config.json`: regras do sistema e aparência.
-- `data/sample_project.json`: projeto de exemplo para testes.
-- `app/services/schedule_service.py`: cálculos de horas, valor e geração automática.
-- `app/services/excel_export_service.py`: exportação da planilha Excel corporativa.
-- `app/ui/main_window.py`: janela principal.
+## Licenca
+
+Uso interno. Ajuste conforme a politica do repositorio.
