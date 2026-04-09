@@ -1,0 +1,5 @@
+customtkinter>=5.2.2
+tkcalendar>=1.6.1
+openpyxl>=3.1.5
+Babel>=2.14.0
+pyinstaller>=6.11.0

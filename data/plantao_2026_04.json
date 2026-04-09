@@ -1,0 +1,74 @@
+{
+  "nome": "Plantão 04/2026",
+  "ano": 2026,
+  "mes": 4,
+  "responsaveis": [
+    {
+      "nome": "Felipe Brito",
+      "id": "c3bdf2b4-39e3-41b1-925f-37d6d82ca97c"
+    },
+    {
+      "nome": "Isaak Ferreira",
+      "id": "5716a0ee-b377-4fb3-97cc-c1fddadc71e5"
+    }
+  ],
+  "lancamentos": [
+    {
+      "responsavel_id": "c3bdf2b4-39e3-41b1-925f-37d6d82ca97c",
+      "responsavel": "Felipe Brito",
+      "data": "2026-04-07",
+      "inicio": "20:00",
+      "fim": "21:00",
+      "tipo": "Suporte",
+      "total_horas": 1.0,
+      "valor": 10.5,
+      "numero_chamado": "",
+      "solicitante": "",
+      "cliente": "",
+      "nivel": "",
+      "observacao": "",
+      "mes": "Abril",
+      "dia_semana": "Terça-feira",
+      "origem": "manual",
+      "semana_referencia": "",
+      "id": "ad79db81-4d61-4315-99e2-1d41a4af7fe5"
+    }
+  ],
+  "atribuicoes_semanais": {
+    "2026-03-30__2026-04-05": {
+      "responsavel_id": "c3bdf2b4-39e3-41b1-925f-37d6d82ca97c",
+      "responsavel": "Felipe Brito",
+      "inicio": "2026-03-30",
+      "fim": "2026-04-05",
+      "label": "Semana 1 (30/03 a 05/04)"
+    },
+    "2026-04-06__2026-04-12": {
+      "responsavel_id": "5716a0ee-b377-4fb3-97cc-c1fddadc71e5",
+      "responsavel": "Isaak Ferreira",
+      "inicio": "2026-04-06",
+      "fim": "2026-04-12",
+      "label": "Semana 2 (06/04 a 12/04)"
+    },
+    "2026-04-13__2026-04-19": {
+      "responsavel_id": "c3bdf2b4-39e3-41b1-925f-37d6d82ca97c",
+      "responsavel": "Felipe Brito",
+      "inicio": "2026-04-13",
+      "fim": "2026-04-19",
+      "label": "Semana 3 (13/04 a 19/04)"
+    },
+    "2026-04-20__2026-04-26": {
+      "responsavel_id": "5716a0ee-b377-4fb3-97cc-c1fddadc71e5",
+      "responsavel": "Isaak Ferreira",
+      "inicio": "2026-04-20",
+      "fim": "2026-04-26",
+      "label": "Semana 4 (20/04 a 26/04)"
+    },
+    "2026-04-27__2026-05-03": {
+      "responsavel_id": "c3bdf2b4-39e3-41b1-925f-37d6d82ca97c",
+      "responsavel": "Felipe Brito",
+      "inicio": "2026-04-27",
+      "fim": "2026-05-03",
+      "label": "Semana 5 (27/04 a 03/05)"
+    }
+  }
+}

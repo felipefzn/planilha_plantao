@@ -1,0 +1,86 @@
+{
+  "nome": "Projeto Exemplo Plantão",
+  "ano": 2026,
+  "mes": 4,
+  "responsaveis": [
+    {
+      "id": "resp-felipe",
+      "nome": "Felipe Brito"
+    },
+    {
+      "id": "resp-isaak",
+      "nome": "Isaak Ferreira"
+    }
+  ],
+  "lancamentos": [
+    {
+      "id": "lanc-001",
+      "responsavel_id": "resp-felipe",
+      "responsavel": "Felipe Brito",
+      "data": "2026-04-06",
+      "inicio": "20:00",
+      "fim": "06:00",
+      "tipo": "Sobre aviso",
+      "total_horas": 10.0,
+      "valor": 35.1,
+      "numero_chamado": "",
+      "solicitante": "",
+      "cliente": "",
+      "nivel": "",
+      "observacao": "Lançamento automático de exemplo",
+      "mes": "Abril",
+      "dia_semana": "Segunda-feira",
+      "origem": "automatico",
+      "semana_referencia": "2026-04-06__2026-04-12"
+    },
+    {
+      "id": "lanc-002",
+      "responsavel_id": "resp-felipe",
+      "responsavel": "Felipe Brito",
+      "data": "2026-04-08",
+      "inicio": "22:30",
+      "fim": "01:00",
+      "tipo": "Suporte",
+      "total_horas": 2.5,
+      "valor": 26.25,
+      "numero_chamado": "INC-45871",
+      "solicitante": "Equipe NOC",
+      "cliente": "Cliente Alpha",
+      "nivel": "N2",
+      "observacao": "Acionamento urgente durante a madrugada",
+      "mes": "Abril",
+      "dia_semana": "Quarta-feira",
+      "origem": "manual",
+      "semana_referencia": ""
+    },
+    {
+      "id": "lanc-003",
+      "responsavel_id": "resp-isaak",
+      "responsavel": "Isaak Ferreira",
+      "data": "2026-04-11",
+      "inicio": "00:00",
+      "fim": "00:00",
+      "tipo": "Sobre aviso",
+      "total_horas": 24.0,
+      "valor": 84.24,
+      "numero_chamado": "",
+      "solicitante": "",
+      "cliente": "",
+      "nivel": "",
+      "observacao": "Cobertura de sábado configurada no sistema",
+      "mes": "Abril",
+      "dia_semana": "Sábado",
+      "origem": "automatico",
+      "semana_referencia": "2026-04-06__2026-04-12"
+    }
+  ],
+  "atribuicoes_semanais": {
+    "2026-04-06__2026-04-12": {
+      "responsavel_id": "resp-felipe",
+      "responsavel": "Felipe Brito",
+      "inicio": "2026-04-06",
+      "fim": "2026-04-12",
+      "label": "Semana 2 (06/04 a 12/04)"
+    }
+  }
+}
